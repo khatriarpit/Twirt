@@ -61,7 +61,7 @@ public class TwitterViewController {
 			/* start current time */
 			Date currentDate = new Date();
 			long currentTime=System.currentTimeMillis();
-			LOG.info("currentTime-->"+currentTime);
+			LOG.info("currentTime In milis-->"+currentTime);
 			LOG.info("currentDate-->"+currentDate);
 			long previousApiCallTime = 0L;
 			if(portletSession.getAttribute("apiCallTime") != null){
@@ -79,8 +79,8 @@ public class TwitterViewController {
 			
 			/* end current time*/
 			
-			if(diffMinutes>=30){
-				LOG.info("Calling the api in every 30 minutes");
+			if(diffMinutes>=60L){
+				LOG.info("Calling the api in every 60 minutes");
 				customTweetVO=twitterViewHelper.fetchTweets();//Fetching the latest tweet
 				portletSession.setAttribute("customTweetVO", customTweetVO);
 			}
@@ -90,7 +90,7 @@ public class TwitterViewController {
 				portletSession.setAttribute("customTweetVO", customTweetVO);
 			}
 			else{
-				LOG.info("30 minutes not happened,so taking value from session");
+				LOG.info("60 minutes not happened,so taking value from session");
 				customTweetVO = (CustomTweetVO)portletSession.getAttribute("customTweetVO");
 			}
 			
